@@ -1,5 +1,5 @@
 import { PokemonContext } from "./PokemonContext";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useForm } from "../hook/useForm";
 
 /* Pokemon Provider */
@@ -11,15 +11,15 @@ export const PokemonProvider = ({ children }) => {
 
     /* Utilizamos CustomHook - useForm */
     const { valueSearch, onInputChange, onResetForm } = useForm({
-        valueSearch: '',
+        valueSearch: "",
     });
 
     /* Hooks simples */
     const [loading, setLoading] = useState(true);
     const [active, setActive] = useState(false);
 
-    /* llamar los primeros 50 pokemones a la API */
-    const getAllPokemons = async (limit = 50) => {
+    /* llamamos los primeros 50 pokemones a la API */
+    const getAllPokemons = useCallback(async (limit = 50) => {
         const baseURL = import.meta.env.VITE_REACT_APP_POKEMON_API_BASE_URL;
 
         const res = await fetch(`${baseURL}pokemon?limit=${limit}&offset=${offset}`);
@@ -32,11 +32,11 @@ export const PokemonProvider = ({ children }) => {
         });
 
         const results = await Promise.all(promises);
-        setAllPokemons([...allPokemons, ...results]);
+        setAllPokemons(prevPokemons => [...prevPokemons, ...results]);
         setLoading(false);
-    }
+    }, [offset]);
 
-    /* llamar todos los pokemones de la API */
+    /* llamamos todos los pokemones de la API */
     const getGlobalPokemons = async () => {
         const baseURL = import.meta.env.VITE_REACT_APP_POKEMON_API_BASE_URL;
 
@@ -54,7 +54,7 @@ export const PokemonProvider = ({ children }) => {
         setLoading(false);
     };
 
-    /* llamar a un pokemon por el ID */
+    /* llamamos a un pokemon por el ID */
     const getPokemonByID = async id => {
         const baseURL = import.meta.env.VITE_REACT_APP_POKEMON_API_BASE_URL;
         const res = await fetch(`${baseURL}pokemon/${id}`);
@@ -62,7 +62,7 @@ export const PokemonProvider = ({ children }) => {
         return data;
     };
 
-    /* llamar a un pokemon por el nombre */
+    /* llamamos a un pokemon por el nombre */
     const getPokemonByName = async name => {
         const baseURL = import.meta.env.VITE_REACT_APP_POKEMON_API_BASE_URL;
         const res = await fetch(`${baseURL}pokemon/${name.toLowerCase()}`);
@@ -72,7 +72,7 @@ export const PokemonProvider = ({ children }) => {
 
     useEffect(() => {
         getAllPokemons();
-    }, [offset]);
+    }, [offset, getAllPokemons]);
 
     useEffect(() => {
         getGlobalPokemons();
@@ -151,8 +151,8 @@ export const PokemonProvider = ({ children }) => {
                 active,
                 setActive,
                 /* Filter Container Checkbox */
-				handleCheckbox,
-				filteredPokemons,
+                handleCheckbox,
+                filteredPokemons,
             }}
         >
             {children}
