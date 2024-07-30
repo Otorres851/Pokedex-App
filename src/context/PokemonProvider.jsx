@@ -4,6 +4,7 @@ import { useForm } from "../hook/useForm";
 
 /* Pokemon Provider */
 export const PokemonProvider = ({ children }) => {
+
     const [allPokemons, setAllPokemons] = useState([]);
     const [globalPokemons, setGlobalPokemons] = useState([]);
     const [offset, setOffset] = useState(0);
@@ -17,102 +18,56 @@ export const PokemonProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [active, setActive] = useState(false);
 
-    /* Llamamos los primeros 20 pokemones a la API */
-    const getAllPokemons = useCallback(async (limit = 20) => {
+    /* llamamos los primeros 50 pokemones a la API */
+    const getAllPokemons = useCallback(async (limit = 50) => {
         const baseURL = import.meta.env.VITE_REACT_APP_POKEMON_API_BASE_URL;
 
-        try {
-            const res = await fetch(`${baseURL}pokemon?limit=${limit}&offset=${offset}`);
-            if (!res.ok) {
-                throw new Error(`HTTP error! status: ${res.status}`);
-            }
-            const text = await res.text(); 
-            const data = JSON.parse(text); 
+        const res = await fetch(`${baseURL}pokemon?limit=${limit}&offset=${offset}`);
+        const data = await res.json();
 
-            const promises = data.results.map(async pokemon => {
-                await new Promise(resolve => setTimeout(resolve, 200));
+        const promises = data.results.map(async pokemon => {
+            const res = await fetch(pokemon.url);
+            const data = await res.json();
+            return data;
+        });
 
-                const res = await fetch(pokemon.url);
-                if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
-                const text = await res.text(); 
-                const data = JSON.parse(text); 
-                return data;
-            });
-
-            const results = await Promise.all(promises);
-            setAllPokemons(prevPokemons => [...prevPokemons, ...results]);
-            setLoading(false);
-        } catch (error) {
-            console.error("Error fetching data:", error);
-            setLoading(false);
-        }
+        const results = await Promise.all(promises);
+        setAllPokemons(prevPokemons => [...prevPokemons, ...results]);
+        setLoading(false);
     }, [offset]);
 
-    /* Llamamos todos los pokemones de la API */
+    /* llamamos todos los pokemones de la API */
     const getGlobalPokemons = async () => {
         const baseURL = import.meta.env.VITE_REACT_APP_POKEMON_API_BASE_URL;
 
-        try {
-            const res = await fetch(`${baseURL}pokemon?limit=1000&offset=0`); 
-            if (!res.ok) {
-                throw new Error(`HTTP error! status: ${res.status}`);
-            }
-            const text = await res.text(); 
-            const data = JSON.parse(text); 
+        const res = await fetch(`${baseURL}pokemon?limit=100000&offset=0`);
+        const data = await res.json();
 
-            const promises = data.results.map(async pokemon => {
-                await new Promise(resolve => setTimeout(resolve, 200)); 
+        const promises = data.results.map(async pokemon => {
+            const res = await fetch(pokemon.url);
+            const data = await res.json();
+            return data;
+        });
+        const results = await Promise.all(promises);
 
-                const res = await fetch(pokemon.url);
-                if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
-                const text = await res.text(); 
-                const data = JSON.parse(text); 
-                return data;
-            });
-            const results = await Promise.all(promises);
-
-            setGlobalPokemons(results);
-            setLoading(false);
-        } catch (error) {
-            console.error("Error fetching data:", error);
-            setLoading(false);
-        }
+        setGlobalPokemons(results);
+        setLoading(false);
     };
 
-    /* Llamamos a un pokemon por el ID */
+    /* llamamos a un pokemon por el ID */
     const getPokemonByID = async id => {
         const baseURL = import.meta.env.VITE_REACT_APP_POKEMON_API_BASE_URL;
-        try {
-            const res = await fetch(`${baseURL}pokemon/${id}`);
-            if (!res.ok) {
-                throw new Error(`HTTP error! status: ${res.status}`);
-            }
-            const data = await res.json();
-            return data;
-        } catch (error) {
-            console.error("Error fetching data:", error);
-            return null;
-        }
+        const res = await fetch(`${baseURL}pokemon/${id}`);
+        const data = await res.json();
+        return data;
     };
 
-    /* Llamamos a un pokemon por el nombre */
+    /* llamamos a un pokemon por el nombre */
     const getPokemonByName = async name => {
         const baseURL = import.meta.env.VITE_REACT_APP_POKEMON_API_BASE_URL;
-        try {
-            const res = await fetch(`${baseURL}pokemon/${name.toLowerCase()}`);
-            if (!res.ok) {
-                throw new Error(`HTTP error! status: ${res.status}`);
-            }
-            const data = await res.json();
-            return data;
-        } catch (error) {
-            console.error("Error fetching data:", error);
-            return null;
-        }
+        const res = await fetch(`${baseURL}pokemon/${name.toLowerCase()}`);
+        const data = await res.json();
+        return data;
     };
 
     useEffect(() => {
@@ -123,9 +78,9 @@ export const PokemonProvider = ({ children }) => {
         getGlobalPokemons();
     }, []);
 
-    /* Botón para cargar más Pokémon */
+    /* Boton para cargar más Pokemon */
     const onClickLoadMore = () => {
-        setOffset(offset + 20); 
+        setOffset(offset + 50);
     };
 
     // Filter Function + State
@@ -148,7 +103,7 @@ export const PokemonProvider = ({ children }) => {
         dragon: false,
         dark: false,
         fairy: false,
-        unknown: false,
+        unknow: false,
         shadow: false,
     });
 
@@ -166,7 +121,7 @@ export const PokemonProvider = ({ children }) => {
                     .map(type => type.type.name)
                     .includes(e.target.name)
             );
-            setfilteredPokemons(prevFilteredPokemons => [...prevFilteredPokemons, ...filteredResults]);
+            setfilteredPokemons([...filteredPokemons, ...filteredResults]);
         } else {
             const filteredResults = filteredPokemons.filter(
                 pokemon =>
@@ -174,7 +129,7 @@ export const PokemonProvider = ({ children }) => {
                         .map(type => type.type.name)
                         .includes(e.target.name)
             );
-            setfilteredPokemons(filteredResults);
+            setfilteredPokemons([...filteredResults]);
         }
     };
 
@@ -189,10 +144,10 @@ export const PokemonProvider = ({ children }) => {
                 getPokemonByID,
                 getPokemonByName,
                 onClickLoadMore,
-                /* Loader */
+                /*Loader*/
                 loading,
                 setLoading,
-                /* btn filter */
+                /*btn filter*/
                 active,
                 setActive,
                 /* Filter Container Checkbox */
