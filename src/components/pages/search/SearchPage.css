@@ -1,0 +1,10 @@
+/* Search Page */
+.search__p {
+	margin-bottom: 30px;
+	font-size: 22px;
+    color: var(--color-gwhite);
+}
+
+.search__response {
+	font-weight: 700;
+}

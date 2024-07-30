@@ -1,0 +1,47 @@
+/*----Home Page Nav -----*/
+
+body {
+	background-color: var(--color-primary);
+}
+
+.nav_container {
+    display: flex;
+    margin: 0 10rem;
+}
+
+.nav__filter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+    cursor: pointer;
+}
+
+.nav__title {
+    font-size: 1.5rem;
+    color: var(--color-gwhite);
+    font-weight: 400;
+}
+
+.btn_load {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 1.2rem;
+	margin-top: 1.2rem;
+}
+
+.btn_load__more {
+	border: none;
+	padding: 0.9rem 2.5rem;
+	font-family: inherit;
+	background-color: var(--color-aqua);
+	color: var(--color-gwhite);
+    font-weight: 700;
+	border-radius: 0.6rem;
+	cursor: pointer;
+}
+
+.btn_load__more:hover {
+	background-color: var(--color-gwhite);
+	color: var(--color-primary);
+}

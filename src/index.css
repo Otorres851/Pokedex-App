@@ -1,0 +1,87 @@
+/*------ Fonts ------*/
+
+/* Poppins Bold */
+@font-face {
+    font-family: "Poppins-Bold";
+    src: url("./assets/fonts/Poppins-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Poppins Regular */
+@font-face {
+    font-family: "Poppins-Regular";
+    src: url("./assets/fonts/Poppins-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+/*---- Global Css ----*/
+
+:root {
+    /*-- Colors --*/
+
+    /* Identity */
+    --color-primary: #DC0A2D;
+
+    /* Pokémon Type */
+    --color-bug: #A7B723;
+    --color-dark: #75574C;
+    --color-dragon: #7037FF;
+    --color-electric: #F9CF30;
+    --color-fairy: #E69EAC;
+    --color-fighting: #C12239;
+    --color-fire: #F57D31;
+    --color-flying: #A891EC;
+    --color-ghost: #70559B;
+    --color-normal: #AAA67F;
+    --color-grass: #74CB48;
+    --color-ground: #DEC16B;
+    --color-ice: #9AD6DF;
+    --color-poison: #A43E9E;
+    --color-psychic: #FB5584;
+    --color-rock: #B69E31;
+    --color-steel: #B7B9D0;
+    --color-water: #6493EB;
+    --color-shadow: #7B62A3;
+    --color-unknow: #757575;
+
+    /* Gray Scale */
+    --color-gdark: #212121;
+    --color-gmedium: #666666;
+    --color-glight: #E0E0E0;
+    --color-gbackground: #EFEFEF;
+    --color-gwhite: #FFFFFF;
+    
+    /* Others */
+	--color-aqua: #006D77; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+::selection {
+    background: var(--color-primary);
+    color: var(--color-gwhite);
+}
+
+body {
+    font-family: "Poppins-Regular", sans-serif;
+    font-weight: 400;
+    height: 100vh;
+}
+
+header {
+    font-family: "Poppins-Bold", sans-serif;
+    font-weight: 700;
+}
+
+.container {
+    max-width: 75rem;
+    margin: 0 auto;
+}
+

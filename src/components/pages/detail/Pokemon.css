@@ -1,0 +1,256 @@
+/*---- Main Pokemon ---- */
+.main_pokemon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.5rem 0;
+}
+
+.main_pokemon__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main_pokemon__pokemon {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 2rem;
+    color: var(--color-gwhite);
+    gap: 0.9rem;
+}
+
+.main_pokemon__icon  {
+    display: block;
+}
+
+.main_pokemon__name {
+    font-size: 2.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+}
+
+.main_pokemon__id {
+ font-weight: 700;
+ font-size: 1.35rem;
+ color: var(--color-gwhite);
+}
+
+.main_pokemon__img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main_pokemon__img {
+    flex-basis: 22.5rem;
+}
+
+
+.main_pokemon__info {
+    display: flex;
+    padding: 7rem 2rem;
+    background-color: var(--color-gwhite);
+    border-radius: 1rem;
+    flex-direction: column;
+    margin-top: -8rem;
+}
+
+.main_pokemon__type {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+    margin: 2rem 0 0 0;
+}
+
+.main_pokemon__about {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-grass);
+    margin: 1rem 0;
+}    
+
+.main_pokemon__description {
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: justify;
+    color: var(--color-gdark);
+    margin: 1rem 0px;
+}
+
+.main_pokemon__img {
+    width: 100%;
+}
+
+.main_pokemon__image {
+    width: 100%;
+}
+
+/* Types of Pokemon */
+.water {
+	background-color: var(--color-water);
+    font-size: 0.75rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    color: var(--color-gwhite);
+    font-weight: 700;
+}
+
+.grass {
+    background-color: var(--color-grass);
+    font-size: 0.75rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    color: var(--color-gwhite);
+    font-weight: 700;
+}
+
+.poison {
+	background-color: var(--color-poison);
+    font-size: 0.75rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    color: var(--color-gwhite);
+    font-weight: 700;
+}
+
+.fire {
+	background-color: var(--color-fire);
+    font-size: 0.75rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    color: var(--color-gwhite);
+    font-weight: 700;
+}
+
+.bug {
+	background-color: var(--color-bug);
+    font-size: 0.75rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    color: var(--color-gwhite);
+    font-weight: 700;
+}
+
+.dragon {
+	background: var(--color-dragon);
+    font-size: 0.75rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    color: var(--color-gwhite);
+    font-weight: 700;
+}
+
+.flying {
+	background-color: var(--color-flying);
+    font-size: 0.75rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    color: var(--color-gwhite);
+    font-weight: 700;
+}
+
+.ground {
+	background-color: var(--color-ground);
+    font-size: 0.75rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    color: var(--color-gwhite);
+    font-weight: 700;
+}
+
+.steel {
+	background-color: var(--color-steel);
+    font-size: 0.75rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    color: var(--color-gwhite);
+    font-weight: 700;
+}
+
+.psychic {
+	background-color: var(--color-psychic);
+    font-size: 0.75rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    color: var(--color-gwhite);
+    font-weight: 700;
+}
+
+.ice {
+	background-color: var(--color-ice);
+    font-size: 0.75rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    color: var(--color-gwhite);
+    font-weight: 700;
+}
+
+.ghost {
+	background-color: var(--color-ghost);
+    font-size: 0.75rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    color: var(--color-gwhite);
+    font-weight: 700;
+}
+
+.normal {
+	background-color: var(--color-normal);
+    font-size: 0.75rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    color: var(--color-gwhite);
+    font-weight: 700;
+}
+
+.rock {
+	background-color: var(--color-rock);
+    font-size: 0.75rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    color: var(--color-gwhite);
+    font-weight: 700;
+}
+
+.electric {
+	background-color: var(--color-electric);
+    font-size: 0.75rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    color: var(--color-gwhite);
+    font-weight: 700;
+}
+
+.fighting {
+	background-color: var(--color-fighting);
+    font-size: 0.75rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    color: var(--color-gwhite);
+    font-weight: 700;
+}
+
+.fairy {
+	background-color: var(--color-fairy);
+    font-size: 0.75rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    color: var(--color-gwhite);
+    font-weight: 700;
+}
+
+.dark {
+	background-color: var(--color-dark);
+    font-size: 0.75rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    color: var(--color-gwhite);
+    font-weight: 700;
+}
+

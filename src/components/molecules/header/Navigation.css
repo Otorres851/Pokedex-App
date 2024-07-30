@@ -1,0 +1,96 @@
+/*----- Header Navigation ----*/
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.5rem 0;
+}
+
+.head__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 2rem;
+}
+
+.head__title {
+    color: var(--color-gwhite);
+}
+
+.head__form {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.head__search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--color-gwhite);
+    padding: 0.5rem 1rem 0.5rem 0.75rem;
+    border-radius: 3.1rem;
+    cursor: pointer;
+    box-shadow: inset 0 0.1rem 0.5rem rgba(0, 0, 0, 0.4);
+}
+
+.head__search:focus,
+.head__search:active {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+}
+
+.head__search input {
+    font-size: 0.9rem;
+    font-weight: 400;
+    width: 18.7rem;
+    border: none;
+    outline: none;
+}
+
+.head__search input::placeholder {
+    color: var(--color-gmedium);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1rem;
+}
+
+.head__btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    padding: 0.3rem;
+    cursor: pointer;
+    background-color: var(--color-gwhite);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: inset 0 0.1rem 0.5rem rgba(0, 0, 0, 0.4);
+}
+
+.head__btn:focus,
+.head__btn:active {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+}
+
+
+/*---------------
+Media
+----------------*/
+
+@media(max-width: 910px) {
+    .head {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .head__search {
+        width: 75%;
+    }
+
+}
