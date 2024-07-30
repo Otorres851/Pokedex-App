@@ -67,15 +67,18 @@ The application allows users to search for Pokémon and view details for each Po
 ## 🧩 Components
 
 ### 🐭 Pokémon
--Description: Displays a Pokémon card with to image, name, and info.
--Functionality: Clicking on the card navigates to the Pokemon's detail page.
+Description: Displays a Pokémon card with to image, name, and info.
+
+Functionality: Clicking on the card navigates to the Pokemon's detail page.
 
 ### ⚡🐭 PokémonDetailPage
 Description: Fetches and displays detailed information about a Pokémon using the Pokemon's ID from the URL.
+
 Functionality: Shows Pokémon name, ID, level, image, width, height.
 
 ### 📜 CardPokémon
 Description: Displays a list of Pokemon cards.
+
 Functionality: Uses the CardPokemon component to display each Pokémon.
 
 ### 🔤 Filter
