@@ -100,7 +100,7 @@ You need to set up the following environment variable in your .env.local file:
 - [React Documentation](https://legacy.reactjs.org/docs/getting-started.html)
 - [React Router V6 Documentation](https://reactrouter.com/en/v6.3.0/getting-started/overview)
 - [PokéApi Documentation](https://pokeapi.co/)
-- [Loaders](https://uiball.com/loaders/)
+- [Loaders Documentation](https://uiball.com/loaders/)
 
 ## Learn More
 
