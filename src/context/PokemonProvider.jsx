@@ -26,21 +26,18 @@ export const PokemonProvider = ({ children }) => {
             if (!res.ok) {
                 throw new Error(`HTTP error! status: ${res.status}`);
             }
-            const text = await res.text(); // Usa text() para verificar la respuesta cruda
-            console.log(text); // Verifica la respuesta cruda
-            const data = JSON.parse(text); // Luego convierte a JSON manualmente
+            const text = await res.text(); 
+            const data = JSON.parse(text); 
 
             const promises = data.results.map(async pokemon => {
-                // Agregar un retraso entre solicitudes
-                await new Promise(resolve => setTimeout(resolve, 200)); // Retraso de 200 ms
+                await new Promise(resolve => setTimeout(resolve, 200));
 
                 const res = await fetch(pokemon.url);
                 if (!res.ok) {
                     throw new Error(`HTTP error! status: ${res.status}`);
                 }
-                const text = await res.text(); // Usa text() para verificar la respuesta cruda
-                console.log(text); // Verifica la respuesta cruda
-                const data = JSON.parse(text); // Luego convierte a JSON manualmente
+                const text = await res.text(); 
+                const data = JSON.parse(text); 
                 return data;
             });
 
@@ -48,7 +45,7 @@ export const PokemonProvider = ({ children }) => {
             setAllPokemons(prevPokemons => [...prevPokemons, ...results]);
             setLoading(false);
         } catch (error) {
-            console.error('Error fetching data:', error);
+            console.error("Error fetching data:", error);
             setLoading(false);
         }
     }, [offset]);
@@ -58,25 +55,22 @@ export const PokemonProvider = ({ children }) => {
         const baseURL = import.meta.env.VITE_REACT_APP_POKEMON_API_BASE_URL;
 
         try {
-            const res = await fetch(`${baseURL}pokemon?limit=1000&offset=0`); // Reducir límite aquí
+            const res = await fetch(`${baseURL}pokemon?limit=1000&offset=0`); 
             if (!res.ok) {
                 throw new Error(`HTTP error! status: ${res.status}`);
             }
-            const text = await res.text(); // Usa text() para verificar la respuesta cruda
-            console.log(text); // Verifica la respuesta cruda
-            const data = JSON.parse(text); // Luego convierte a JSON manualmente
+            const text = await res.text(); 
+            const data = JSON.parse(text); 
 
             const promises = data.results.map(async pokemon => {
-                // Agregar un retraso entre solicitudes
-                await new Promise(resolve => setTimeout(resolve, 200)); // Retraso de 200 ms
+                await new Promise(resolve => setTimeout(resolve, 200)); 
 
                 const res = await fetch(pokemon.url);
                 if (!res.ok) {
                     throw new Error(`HTTP error! status: ${res.status}`);
                 }
-                const text = await res.text(); // Usa text() para verificar la respuesta cruda
-                console.log(text); // Verifica la respuesta cruda
-                const data = JSON.parse(text); // Luego convierte a JSON manualmente
+                const text = await res.text(); 
+                const data = JSON.parse(text); 
                 return data;
             });
             const results = await Promise.all(promises);
@@ -84,7 +78,7 @@ export const PokemonProvider = ({ children }) => {
             setGlobalPokemons(results);
             setLoading(false);
         } catch (error) {
-            console.error('Error fetching data:', error);
+            console.error("Error fetching data:", error);
             setLoading(false);
         }
     };
@@ -100,7 +94,7 @@ export const PokemonProvider = ({ children }) => {
             const data = await res.json();
             return data;
         } catch (error) {
-            console.error('Error fetching data:', error);
+            console.error("Error fetching data:", error);
             return null;
         }
     };
@@ -116,7 +110,7 @@ export const PokemonProvider = ({ children }) => {
             const data = await res.json();
             return data;
         } catch (error) {
-            console.error('Error fetching data:', error);
+            console.error("Error fetching data:", error);
             return null;
         }
     };
@@ -131,7 +125,7 @@ export const PokemonProvider = ({ children }) => {
 
     /* Botón para cargar más Pokémon */
     const onClickLoadMore = () => {
-        setOffset(offset + 20); // Reducir el número de resultados cargados
+        setOffset(offset + 20); 
     };
 
     // Filter Function + State
