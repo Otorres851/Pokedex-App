@@ -4,7 +4,6 @@ import { useForm } from "../hook/useForm";
 
 /* Pokemon Provider */
 export const PokemonProvider = ({ children }) => {
-
     const [allPokemons, setAllPokemons] = useState([]);
     const [globalPokemons, setGlobalPokemons] = useState([]);
     const [offset, setOffset] = useState(0);
@@ -18,56 +17,108 @@ export const PokemonProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [active, setActive] = useState(false);
 
-    /* llamamos los primeros 50 pokemones a la API */
-    const getAllPokemons = useCallback(async (limit = 50) => {
+    /* Llamamos los primeros 20 pokemones a la API */
+    const getAllPokemons = useCallback(async (limit = 20) => {
         const baseURL = import.meta.env.VITE_REACT_APP_POKEMON_API_BASE_URL;
 
-        const res = await fetch(`${baseURL}pokemon?limit=${limit}&offset=${offset}`);
-        const data = await res.json();
+        try {
+            const res = await fetch(`${baseURL}pokemon?limit=${limit}&offset=${offset}`);
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            const text = await res.text(); // Usa text() para verificar la respuesta cruda
+            console.log(text); // Verifica la respuesta cruda
+            const data = JSON.parse(text); // Luego convierte a JSON manualmente
 
-        const promises = data.results.map(async pokemon => {
-            const res = await fetch(pokemon.url);
-            const data = await res.json();
-            return data;
-        });
+            const promises = data.results.map(async pokemon => {
+                // Agregar un retraso entre solicitudes
+                await new Promise(resolve => setTimeout(resolve, 200)); // Retraso de 200 ms
 
-        const results = await Promise.all(promises);
-        setAllPokemons(prevPokemons => [...prevPokemons, ...results]);
-        setLoading(false);
+                const res = await fetch(pokemon.url);
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                const text = await res.text(); // Usa text() para verificar la respuesta cruda
+                console.log(text); // Verifica la respuesta cruda
+                const data = JSON.parse(text); // Luego convierte a JSON manualmente
+                return data;
+            });
+
+            const results = await Promise.all(promises);
+            setAllPokemons(prevPokemons => [...prevPokemons, ...results]);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            setLoading(false);
+        }
     }, [offset]);
 
-    /* llamamos todos los pokemones de la API */
+    /* Llamamos todos los pokemones de la API */
     const getGlobalPokemons = async () => {
         const baseURL = import.meta.env.VITE_REACT_APP_POKEMON_API_BASE_URL;
 
-        const res = await fetch(`${baseURL}pokemon?limit=100000&offset=0`);
-        const data = await res.json();
+        try {
+            const res = await fetch(`${baseURL}pokemon?limit=1000&offset=0`); // Reducir límite aquí
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            const text = await res.text(); // Usa text() para verificar la respuesta cruda
+            console.log(text); // Verifica la respuesta cruda
+            const data = JSON.parse(text); // Luego convierte a JSON manualmente
 
-        const promises = data.results.map(async pokemon => {
-            const res = await fetch(pokemon.url);
-            const data = await res.json();
-            return data;
-        });
-        const results = await Promise.all(promises);
+            const promises = data.results.map(async pokemon => {
+                // Agregar un retraso entre solicitudes
+                await new Promise(resolve => setTimeout(resolve, 200)); // Retraso de 200 ms
 
-        setGlobalPokemons(results);
-        setLoading(false);
+                const res = await fetch(pokemon.url);
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                const text = await res.text(); // Usa text() para verificar la respuesta cruda
+                console.log(text); // Verifica la respuesta cruda
+                const data = JSON.parse(text); // Luego convierte a JSON manualmente
+                return data;
+            });
+            const results = await Promise.all(promises);
+
+            setGlobalPokemons(results);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            setLoading(false);
+        }
     };
 
-    /* llamamos a un pokemon por el ID */
+    /* Llamamos a un pokemon por el ID */
     const getPokemonByID = async id => {
         const baseURL = import.meta.env.VITE_REACT_APP_POKEMON_API_BASE_URL;
-        const res = await fetch(`${baseURL}pokemon/${id}`);
-        const data = await res.json();
-        return data;
+        try {
+            const res = await fetch(`${baseURL}pokemon/${id}`);
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            const data = await res.json();
+            return data;
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            return null;
+        }
     };
 
-    /* llamamos a un pokemon por el nombre */
+    /* Llamamos a un pokemon por el nombre */
     const getPokemonByName = async name => {
         const baseURL = import.meta.env.VITE_REACT_APP_POKEMON_API_BASE_URL;
-        const res = await fetch(`${baseURL}pokemon/${name.toLowerCase()}`);
-        const data = await res.json();
-        return data;
+        try {
+            const res = await fetch(`${baseURL}pokemon/${name.toLowerCase()}`);
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            const data = await res.json();
+            return data;
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            return null;
+        }
     };
 
     useEffect(() => {
@@ -78,9 +129,9 @@ export const PokemonProvider = ({ children }) => {
         getGlobalPokemons();
     }, []);
 
-    /* Boton para cargar más Pokemon */
+    /* Botón para cargar más Pokémon */
     const onClickLoadMore = () => {
-        setOffset(offset + 50);
+        setOffset(offset + 20); // Reducir el número de resultados cargados
     };
 
     // Filter Function + State
@@ -103,7 +154,7 @@ export const PokemonProvider = ({ children }) => {
         dragon: false,
         dark: false,
         fairy: false,
-        unknow: false,
+        unknown: false,
         shadow: false,
     });
 
@@ -121,7 +172,7 @@ export const PokemonProvider = ({ children }) => {
                     .map(type => type.type.name)
                     .includes(e.target.name)
             );
-            setfilteredPokemons([...filteredPokemons, ...filteredResults]);
+            setfilteredPokemons(prevFilteredPokemons => [...prevFilteredPokemons, ...filteredResults]);
         } else {
             const filteredResults = filteredPokemons.filter(
                 pokemon =>
@@ -129,7 +180,7 @@ export const PokemonProvider = ({ children }) => {
                         .map(type => type.type.name)
                         .includes(e.target.name)
             );
-            setfilteredPokemons([...filteredResults]);
+            setfilteredPokemons(filteredResults);
         }
     };
 
@@ -144,10 +195,10 @@ export const PokemonProvider = ({ children }) => {
                 getPokemonByID,
                 getPokemonByName,
                 onClickLoadMore,
-                /*Loader*/
+                /* Loader */
                 loading,
                 setLoading,
-                /*btn filter*/
+                /* btn filter */
                 active,
                 setActive,
                 /* Filter Container Checkbox */
