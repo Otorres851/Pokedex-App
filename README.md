@@ -107,7 +107,7 @@ You need to set up the following environment variable in your .env.local file:
 To learn more about React.js and Vite, take a look at the following resources:
 
 - [React Documentation](https://legacy.reactjs.org/tutorial/tutorial.html) - learn about React.js tutorial intro.
-- [Learn Vite features](https://es.vitejs.dev/guide/features.html) - an interactive Vite tutorial.
+- [Learn Vite features](https://es.vitejs.dev/guide/features.html) - and functionality of Vite.
 
 ## 🤝 Contributing
 If you would like to contribute to this project, please fork the repository and submit a pull request.
