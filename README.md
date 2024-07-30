@@ -23,7 +23,8 @@ This project is a pokemon application built with React.js. It utilizes the RESTf
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/Otorres851/Movie-search.git
+git clone https://github.com/Otorres851/Pokedex-App.git
+
 cd Pokedex-App
 ```
 
@@ -67,14 +68,17 @@ The application allows users to search for Pokémon and view details for each Po
 
 ### 🐭 Pokémon
 Description: Displays a Pokémon card with to image, name, and info.
+
 Functionality: Clicking on the card navigates to the Pokemon's detail page.
 
 ### ⚡🐭 PokémonDetailPage
 Description: Fetches and displays detailed information about a Pokémon using the Pokemon's ID from the URL.
+
 Functionality: Shows Pokémon name, ID, level, image, width, height.
 
 ### 📜 CardPokémon
 Description: Displays a list of Pokemon cards.
+
 Functionality: Uses the CardPokemon component to display each Pokémon.
 
 ### 🔤 Filter
@@ -96,14 +100,14 @@ You need to set up the following environment variable in your .env.local file:
 - [React Documentation](https://legacy.reactjs.org/docs/getting-started.html)
 - [React Router V6 Documentation](https://reactrouter.com/en/v6.3.0/getting-started/overview)
 - [PokéApi Documentation](https://pokeapi.co/)
-- [Loaders](https://uiball.com/loaders/)
+- [Loaders Documentation](https://uiball.com/loaders/)
 
 ## Learn More
 
 To learn more about React.js and Vite, take a look at the following resources:
 
 - [React Documentation](https://legacy.reactjs.org/tutorial/tutorial.html) - learn about React.js tutorial intro.
-- [Learn Vite features](https://es.vitejs.dev/guide/features.html) - an interactive Vite tutorial.
+- [Learn Vite features](https://es.vitejs.dev/guide/features.html) - and functionality of Vite.
 
 ## 🤝 Contributing
 If you would like to contribute to this project, please fork the repository and submit a pull request.
