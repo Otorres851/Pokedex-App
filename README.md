@@ -23,7 +23,8 @@ This project is a pokemon application built with React.js. It utilizes the RESTf
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/Otorres851/Movie-search.git
+git clone https://github.com/Otorres851/Pokedex-App.git
+
 cd Pokedex-App
 ```
 
